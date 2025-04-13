@@ -1,0 +1,19 @@
+name: Build APK
+on:
+  push:
+
+jobs:
+  docker:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          file: {context}/apk.Dockerfile
+          push: false
+          outputs: type=local,dest=output
+      - name: Archive apk
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk
+          path: output
