@@ -9,8 +9,6 @@ jobs:
       image: abrikot/dioxus-android-docker-builder:main
     steps:
       - uses: actions/checkout@v4
-        with:
-          clean: false
       - name: Setup rust
         run: |
           rustup default stable
