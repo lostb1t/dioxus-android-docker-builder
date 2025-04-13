@@ -2,7 +2,11 @@ FROM ubuntu:24.04
 
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
-    PATH=/usr/local/cargo/bin:$PATH
+    JAVA_HOME='/usr/lib/jvm/java-21-openjdk-amd64/' \
+    ANDROID_HOME="/android-sdk" \
+    PATH="/android-sdk/cmdline-tools/latest/bin:/usr/local/cargo/bin:$PATH" \
+    NDK_HOME="/android-sdk/ndk/28.0.13004108" \
+    PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig"
 
 # Install all the required dependencies to build the Android app
 RUN apt update  \
@@ -17,16 +21,5 @@ RUN apt update  \
     && mkdir -p android-sdk/cmdline-tools \
     && curl -o commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip \
     && unzip commandlinetools.zip \
-    && mv cmdline-tools android-sdk/cmdline-tools/latest
-ENV JAVA_HOME='/usr/lib/jvm/java-21-openjdk-amd64/' \
-    ANDROID_HOME="/android-sdk" \
-    PATH="$PATH:/android-sdk/cmdline-tools/latest/bin"
-
-RUN yes | sdkmanager "emulator" "ndk;28.0.13004108" "cmake;3.6.4111459"
-
-ENV NDK_HOME="/android-sdk/ndk/28.0.13004108" \
-    PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig"
-
-# Prepare the environment for the user
-RUN mkdir app
-WORKDIR app
+    && mv cmdline-tools android-sdk/cmdline-tools/latest \
+    && yes | sdkmanager "emulator" "ndk;28.0.13004108" "cmake;3.6.4111459"
