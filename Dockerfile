@@ -13,7 +13,7 @@ RUN rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-a
     && curl -o commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip \
     && unzip commandlinetools.zip && mv cmdline-tools android-sdk/cmdline-tools/latest
 ENV JAVA_HOME='/usr/lib/jvm/java-21-openjdk-amd64/' \
-    ANDROID_HOME="/android-sdk/" \
+    ANDROID_HOME="/android-sdk" \
     PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator"
 
 RUN yes | sdkmanager "emulator" "ndk;28.0.13004108" "cmake;3.6.4111459"
