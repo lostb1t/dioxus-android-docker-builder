@@ -1,5 +1,6 @@
 FROM ubuntu:24.04
 
+# Install all the required dependencies to build the Android app
 RUN apt update  \
     && apt install -y unzip default-jre libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev pkg-config \
     && curl --proto '=https' --tlsv1.2 -sSf -o install-rust.sh https://sh.rustup.rs \
@@ -22,10 +23,12 @@ RUN yes | sdkmanager "emulator" "ndk;28.0.13004108" "cmake;3.6.4111459"
 ENV NDK_HOME="/android-sdk/ndk/28.0.13004108" \
     PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig"
 
+# Copy the sources
 RUN mkdir app
 WORKDIR app
 COPY Cargo.lock Cargo.toml Dioxus.toml ./
 COPY ./assets/ ./assets/
 COPY ./src/ ./src/
 
+# Build the app
 RUN dx bundle --platform android
