@@ -15,7 +15,11 @@ jobs:
         with:
           clean: false
       - name: Build APK
-        run: pwd && ls && dx bundle --platform android
+        run: \
+          ls /root/.cargo/bin
+          pwd
+          ls
+          dx bundle --platform android
 #      - name: Archive APK
 #        uses: actions/upload-artifact@v4
 #        with:
