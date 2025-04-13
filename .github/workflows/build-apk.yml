@@ -3,7 +3,7 @@ on:
   push:
 
 jobs:
-  docker:
+  build-apk:
     runs-on: ubuntu-24.04
     steps:
       - name: Build and push
