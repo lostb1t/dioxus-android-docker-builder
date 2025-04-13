@@ -9,15 +9,15 @@ jobs:
       image: abrikot/dioxus-android-docker-builder:main
       volumes:
         - .:/app
-        - ./output:/app/output
+#        - ./output:/app/output
     steps:
       - uses: actions/checkout@v4
         with:
           clean: false
       - name: Build APK
         run: pwd && ls && dx bundle --platform android
-      - name: Archive APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: apk
-          path: output
+#      - name: Archive APK
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: apk
+#          path: output
