@@ -8,7 +8,6 @@ jobs:
     container:
       image: abrikot/dioxus-android-docker-builder:main
       volumes:
-        - .:/app
 #        - ./output:/app/output
     steps:
       - uses: actions/checkout@v4
@@ -16,15 +15,11 @@ jobs:
           clean: false
       - name: Build APK
         run: |
-          ls /root/.cargo/bin
           rustup default stable
           rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
-          cargo --help
-          pwd
-          ls
           dx bundle --platform android
-#      - name: Archive APK
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: apk
-#          path: output
+      - name: Archive APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk
+          path: output
