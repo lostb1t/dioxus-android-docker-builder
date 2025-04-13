@@ -9,7 +9,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          file: {context}/apk.Dockerfile
+          file: "{context}/apk.Dockerfile"
           push: false
           outputs: type=local,dest=output
       - name: Archive apk
