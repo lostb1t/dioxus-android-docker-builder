@@ -11,11 +11,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           clean: false
-      - name: Build APK
+      - name: Setup rust
         run: |
           rustup default stable
           rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
-          dx bundle --platform android
+      - name: Build APK
+        run: dx bundle --platform android
       - name: Archive APK
         uses: actions/upload-artifact@v4
         with:
