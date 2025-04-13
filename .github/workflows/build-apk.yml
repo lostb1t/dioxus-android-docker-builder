@@ -7,8 +7,6 @@ jobs:
     runs-on: ubuntu-24.04
     container:
       image: abrikot/dioxus-android-docker-builder:main
-      volumes:
-#        - ./output:/app/output
     steps:
       - uses: actions/checkout@v4
         with:
