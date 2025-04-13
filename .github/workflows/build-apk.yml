@@ -5,15 +5,16 @@ on:
 jobs:
   build-apk:
     runs-on: ubuntu-24.04
+    container:
+      image: abrikot/dioxus-android-docker-builder:main
+      volumes:
+        - .:/app
+        - ./output:/app/output
     steps:
       - uses: actions/checkout@v4
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          file: apk.Dockerfile
-          push: false
-          outputs: type=local,dest=output
-      - name: Archive apk
+      - name: Build APK
+        run: pwd && ls && dx bundle --platform android
+      - name: Archive APK
         uses: actions/upload-artifact@v4
         with:
           name: apk
