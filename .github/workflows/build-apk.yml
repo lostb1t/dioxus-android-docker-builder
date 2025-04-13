@@ -6,6 +6,7 @@ jobs:
   build-apk:
     runs-on: ubuntu-24.04
     steps:
+      - uses: actions/checkout@v4
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
