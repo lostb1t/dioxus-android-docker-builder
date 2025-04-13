@@ -17,6 +17,7 @@ jobs:
       - name: Build APK
         run: |
           ls /root/.cargo/bin
+          rustup default stable
           cargo --help
           pwd
           ls
