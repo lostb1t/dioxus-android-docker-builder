@@ -23,3 +23,6 @@ RUN yes | sdkmanager "emulator" "ndk;28.0.13004108" "cmake;3.6.4111459"
 ENV NDK_HOME="/android-sdk/ndk/28.0.13004108" \
     PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig"
 
+# Prepare the environment for the user
+RUN mkdir app
+WORKDIR app
