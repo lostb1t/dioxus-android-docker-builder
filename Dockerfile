@@ -1,14 +1,17 @@
 FROM ubuntu:24.04
 
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo \
+    PATH=/usr/local/cargo/bin:$PATH
+
 # Install all the required dependencies to build the Android app
 RUN apt update  \
     && apt install -y unzip default-jre libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev pkg-config \
     && curl --proto '=https' --tlsv1.2 -sSf -o install-rust.sh https://sh.rustup.rs \
     && chmod +x install-rust.sh \
-    && ./install-rust.sh -y
-ENV PATH="/root/.cargo/bin:${PATH}"
-RUN rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android \
-    && rustup default stable \
+    && ./install-rust.sh -y --default-toolchain stable \
+    && CHOMD -R a+w $RUSTUP_HOME $CARGO_HOME \
+    && rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android \
     && cargo install cargo-binstall \
     && cargo binstall dioxus-cli \
     && mkdir -p android-sdk/cmdline-tools \
