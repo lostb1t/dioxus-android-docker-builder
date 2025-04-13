@@ -11,6 +11,8 @@ jobs:
         - .:/app
         - ./output:/app/output
     steps:
+      - name: Install Git
+        run: apt update && apt install -y git
       - uses: actions/checkout@v4
       - name: Build APK
         run: pwd && ls && dx bundle --platform android
