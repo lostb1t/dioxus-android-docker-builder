@@ -17,6 +17,7 @@ jobs:
       - name: Build APK
         run: |
           ls /root/.cargo/bin
+          cargo --help
           pwd
           ls
           dx bundle --platform android
