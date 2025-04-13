@@ -15,7 +15,7 @@ jobs:
         with:
           clean: false
       - name: Build APK
-        run: \
+        run: |
           ls /root/.cargo/bin
           pwd
           ls
