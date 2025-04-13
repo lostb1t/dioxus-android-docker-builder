@@ -11,14 +11,16 @@ RUN rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-a
     && cargo binstall dioxus-cli \
     && mkdir -p android-sdk/cmdline-tools \
     && curl -o commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip \
-    && unzip commandlinetools.zip && mv cmdline-tools android-sdk/cmdline-tools/latest
+    && unzip commandlinetools.zip \
+    && mv cmdline-tools android-sdk/cmdline-tools/latest
 ENV JAVA_HOME='/usr/lib/jvm/java-21-openjdk-amd64/' \
-    ANDROID_HOME="/android-sdk" \
-    PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator"
+    ANDROID_HOME="/android-sdk/cmdline-tools/latest" \
+    PATH="$PATH:$ANDROID_HOME/bin"
 
 RUN yes | sdkmanager "emulator" "ndk;28.0.13004108" "cmake;3.6.4111459"
 
-ENV NDK_HOME="/android-sdk/ndk/28.0.13004108" \
+ENV ANDROID_HOME="/android-sdk" \
+    NDK_HOME="/android-sdk/ndk/28.0.13004108" \
     PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig"
 
 RUN mkdir app
