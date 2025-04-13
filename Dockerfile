@@ -10,7 +10,7 @@ RUN apt update  \
     && curl --proto '=https' --tlsv1.2 -sSf -o install-rust.sh https://sh.rustup.rs \
     && chmod +x install-rust.sh \
     && ./install-rust.sh -y --default-toolchain stable \
-    && CHOMD -R a+w $RUSTUP_HOME $CARGO_HOME \
+    && chmod -R a+w $RUSTUP_HOME $CARGO_HOME \
     && rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android \
     && cargo install cargo-binstall \
     && cargo binstall dioxus-cli \
