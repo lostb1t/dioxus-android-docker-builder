@@ -1,0 +1,21 @@
+name: "Dioxus Android Build"
+description: "Build your Android apps with Dioxus"
+
+runs:
+  using: "composite"
+  container:
+    image: abrikot/dioxus-android-docker-builder:main
+  steps:
+    - uses: actions/checkout@v4
+    - name: Build APK
+      run: dx bundle --platform android
+    - name: Archive APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: app.apk
+        path: target/dx/android_test/release/android/app/app/build/outputs/apk/debug/*.apk
+    - name: Archive AAB
+      uses: actions/upload-artifact@v4
+      with:
+        name: app.aab
+        path: target/dx/android_test/release/android/app/app/build/outputs/bundle/release/*.aab
