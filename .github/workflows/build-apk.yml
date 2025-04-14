@@ -4,20 +4,6 @@ on:
 
 jobs:
   build-apk:
-    runs-on: ubuntu-24.04
-    container:
-      image: abrikot/dioxus-android-docker-builder:main
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Build APK
-        run: dx bundle --platform android
-      - name: Archive APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: app.apk
-          path: target/dx/android_test/release/android/app/app/build/outputs/apk/debug/app-debug.apk
-      - name: Archive AAB
-        uses: actions/upload-artifact@v4
-        with:
-          name: app.aab
-          path: target/dx/android_test/release/android/app/app/build/outputs/bundle/release/AndroidTest-aarch64.aab
+      - uses: maxence-cornaton/dioxus-android-docker-builder@main
