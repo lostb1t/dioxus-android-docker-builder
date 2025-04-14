@@ -9,7 +9,7 @@ runs:
       with:
         entrypoint: dx bundle --platform android
         volumes:
-          - .:./app
+          - ".:./app"
     - name: Archive APK
       uses: actions/upload-artifact@v4
       with:
