@@ -1,0 +1,9 @@
+name: Build APK with composite action
+on:
+  push:
+
+jobs:
+  build-apk-with-composite-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: maxence-cornaton/dioxus-android-docker-builder@main
