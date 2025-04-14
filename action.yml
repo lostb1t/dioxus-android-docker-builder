@@ -6,7 +6,7 @@ runs:
   steps:
     - uses: actions/checkout@v4
     - shell: bash
-      run: docker run -v .:/app abrikot/dioxus-android-docker-builder:main bash -c 'pwd && ls && ls /app && dx bundle --platform android'
+      run: docker run -v .:/app abrikot/dioxus-android-docker-builder:main bash -c 'cd /app && pwd && ls && dx bundle --platform android'
     - name: Archive APK
       uses: actions/upload-artifact@v4
       with:
