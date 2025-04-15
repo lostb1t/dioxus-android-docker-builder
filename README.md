@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: maxence-cornaton/dioxus-android-docker-builder@0.2
+      - uses: maxence-cornaton/dioxus-android-docker-builder@0.3
 ```
 
 ## The OpenSSL issue
