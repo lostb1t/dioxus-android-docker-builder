@@ -6,12 +6,13 @@ runs:
   steps:
     - uses: actions/checkout@v4
     - shell: bash
-      run: docker run -v .:/app ghcr.io/lostb1t/dioxus-android-docker-builder:main bash -c 'cd /app && dx bundle --platform android'
+      run: docker run -v .:/app ghcr.io/lostb1t/dioxus-android-docker-builder:main bash -c 'cd /app && dx bundle --platform android --release'
     - name: Archive APK
       uses: actions/upload-artifact@v4
       with:
         name: app.apk
-        path: target/dx/android_test/release/android/app/app/build/outputs/apk/debug/*.apk
+        path: target/dx/remux/release/android/app/app/build/outputs/bundle/release/*.apk
+        #path: target/dx/android_test/release/android/app/app/build/outputs/apk/debug/*.apk
     - name: Archive AAB
       uses: actions/upload-artifact@v4
       with:
