@@ -17,7 +17,7 @@ RUN apt update  \
     && chmod -R a+w $RUSTUP_HOME $CARGO_HOME \
     && rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android \
     && cargo install cargo-binstall \
-    && cargo binstall dioxus-cli \
+    && cargo binstall dioxus-cli@0.7.0-alpha.2 \
     && mkdir -p android-sdk/cmdline-tools \
     && curl -o commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip \
     && unzip commandlinetools.zip \
